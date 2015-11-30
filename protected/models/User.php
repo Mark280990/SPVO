@@ -16,6 +16,8 @@ class User extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return User the static model class
 	 */
+	private static $_items=array();
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -37,12 +39,12 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, username, password, email', 'required'),
+			array('username, password, email', 'required'),
 			array('id', 'numerical', 'integerOnly'=>true),
 			array('username, password, email', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, password, email', 'safe', 'on'=>'search'),
+			array('username, password, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,7 +65,6 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
 			'username' => 'Username',
 			'password' => 'Password',
 			'email' => 'Email',
@@ -81,7 +82,6 @@ class User extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('email',$this->email,true);
@@ -89,5 +89,27 @@ class User extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public static function items($tipo)
+	{
+		if (!isset(self::$_items[$tipo]))
+			self::loadItems($tipo);
+		return self::$_items[$tipo];
+	}
+	public static function item($tipo, $id)
+	{
+		if(!isset(self::$_items[$tipo]))
+			self::loadItems($tipo);
+		return isset(self::$_items[$tipo][$id]) ? self::$_items[$tipo][$id]: false;
+	}
+	private static function loadItems($tipo)
+	{
+		self::$_items[$tipo]=array();
+		$models=self::model()->findAll(array('order'=>'id'));
+		self::$_items[$tipo][""]="Seleccione un usuario";
+		foreach ($models as $model)
+			self::$_items[$tipo][$model->id]=$model->username;
+		
 	}
 }

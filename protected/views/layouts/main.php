@@ -33,6 +33,14 @@
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'User', 'url'=>array('/user')),
+				array('label'=>'Cliente', 'url'=>array('/cliente')),
+				array('label'=>'Compra', 'url'=>array('/compra')),
+				array('label'=>'Factura', 'url'=>array('/factura')),
+				array('label'=>'Notacompra', 'url'=>array('/notacompra')),
+				array('label'=>'Pedido', 'url'=>array('/pedido')),
+				array('label'=>'Pedido Compra', 'url'=>array('/pedido')),
+				array('label'=>'Producto', 'url'=>array('/producto')),
+				array('label'=>'Provedores', 'url'=>array('/provedores')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
@@ -49,9 +57,9 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		Copyright &copy; <?php echo date('Y'); ?> by SPVO<br/>
+		Todos los derechos son reservados.<br/>
+		Glez*
 	</div><!-- footer -->
 
 </div><!-- page -->
