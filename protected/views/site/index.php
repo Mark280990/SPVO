@@ -4,7 +4,7 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>BIENVENIDO <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<h1>BIENVENIDO AL <br><i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
 <p>"HOY ES UN DIA PARA TRABAJAR EN ESO QUE SIEMPRE HAS SOÑADO SER" by MGL</p>
 
